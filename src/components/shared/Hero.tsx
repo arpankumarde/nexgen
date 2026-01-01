@@ -179,8 +179,8 @@ const Hero = () => {
                 }}
                 className="flex flex-col items-center text-center p-8 bg-background border"
               >
-                <div className="mb-6 rounded-full bg-[#FF6B2C]/10 p-4">
-                  <feature.icon className="h-8 w-8 text-[#FF6B2C]" />
+                <div className="mb-6 rounded-full bg-primary/10 p-4">
+                  <feature.icon className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="mb-4 text-xl font-mono font-bold">
                   {feature.label}
