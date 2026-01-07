@@ -1,7 +1,9 @@
+"use client";
+
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { Github, Twitter } from "lucide-react";
+import { Github, Twitter, Linkedin, Instagram } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const mainLinks = [
   { href: "/about", label: "About" },
@@ -9,107 +11,76 @@ const mainLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
-const legalLinks = [
-  { href: "/privacy", label: "Privacy" },
-  { href: "/terms", label: "Terms" },
-];
-
 const socialLinks = [
-  {
-    icon: <Twitter className="h-5 w-5" />,
-    href: "https://twitter.com",
-    label: "Twitter",
-  },
-  {
-    icon: <Github className="h-5 w-5" />,
-    href: "https://github.com",
-    label: "GitHub",
-  },
+  { icon: <Linkedin className="h-4 w-4" />, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: <Github className="h-4 w-4" />, href: "https://github.com", label: "GitHub" },
+  { icon: <Twitter className="h-4 w-4" />, href: "https://twitter.com", label: "Twitter" },
+  { icon: <Instagram className="h-4 w-4" />, href: "https://instagram.com", label: "Instagram" },
 ];
 
-interface FooterProps {
-  logo: React.ReactNode;
-  brandName: string;
-  socialLinks: Array<{
-    icon: React.ReactNode;
-    href: string;
-    label: string;
-  }>;
-  mainLinks: Array<{
-    href: string;
-    label: string;
-  }>;
-  legalLinks: Array<{
-    href: string;
-    label: string;
-  }>;
-  copyright: {
-    text: string;
-    license?: string;
-  };
-}
-
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer className="pb-6 pt-16 lg:pb-8 lg:pt-24">
-      <div className="px-4 lg:px-8">
-        <div className="md:flex md:items-start md:justify-between">
-          <Link href="/" className="flex items-center gap-x-2">
-            <Image src="/brand/logo.png" alt="Logo" width={150} height={50} />
-          </Link>
-          <ul className="flex list-none mt-6 md:mt-0 space-x-3">
-            {socialLinks.map((link, i) => (
-              <li key={i}>
-                <Button
-                  variant="secondary"
-                  size="icon"
-                  className="h-10 w-10 rounded-full"
-                  asChild
+    <footer className="relative border-t border-white/5 bg-[#1E1E1E] overflow-hidden">
+      {/* subtle background glow */}
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-40">
+        <div className="absolute bottom-0 left-1/4 h-32 w-64 bg-emerald-500/10 blur-[80px] rounded-full" />
+        <div className="absolute top-0 right-1/4 h-32 w-64 bg-teal-500/10 blur-[80px] rounded-full" />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-4 py-10">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-10">
+
+          {/* Brand/Copyright - Left Section */}
+          <div className="flex flex-col items-center md:items-start gap-2">
+            <Link href="/" className="group transition-transform duration-300 hover:scale-105">
+              <Image
+                src="/brand/logo.png"
+                alt="Nexgen Logo"
+                width={120}
+                height={40}
+                className="opacity-90 group-hover:opacity-100 transition-opacity"
+              />
+            </Link>
+            <p className="font-mono text-[10px] text-slate-500 uppercase tracking-[0.2em]">
+              © {new Date().getFullYear()} NEXGEN COMMUNITY
+            </p>
+          </div>
+
+          {/* Combined Links & Socials - Right Section Stacked */}
+          <div className="flex flex-col items-center md:items-end gap-6">
+            {/* Navigation Links - Top */}
+            <nav className="flex flex-wrap items-center justify-center md:justify-end gap-x-8 gap-y-2">
+              {mainLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-[11px] font-mono font-bold text-slate-400 hover:text-emerald-400 tracking-widest uppercase transition-all duration-300"
                 >
-                  <Link href={link.href} target="_blank">
-                    {link.icon}
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            {/* Social Icons - Bottom */}
+            <div className="flex items-center gap-3">
+              {socialLinks.map((social) => (
+                <Button
+                  key={social.label}
+                  asChild
+                  variant="ghost"
+                  size="icon"
+                  className="h-9 w-9 rounded-lg bg-white/5 hover:bg-emerald-500/10 border border-white/5 hover:border-emerald-500/30 text-slate-400 hover:text-emerald-400 transition-all duration-300"
+                >
+                  <Link href={social.href} target="_blank" aria-label={social.label}>
+                    {social.icon}
                   </Link>
                 </Button>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="border-t mt-6 pt-6 md:mt-4 md:pt-8 lg:grid lg:grid-cols-10">
-          <nav className="lg:mt-0 lg:col-[4/11]">
-            <ul className="list-none flex flex-wrap -my-1 -mx-2 lg:justify-end">
-              {mainLinks.map((link, i) => (
-                <li key={i} className="my-1 mx-2 shrink-0">
-                  <Link
-                    href={link.href}
-                    className="text-sm text-primary underline-offset-4 hover:underline"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
               ))}
-            </ul>
-          </nav>
-          <div className="mt-6 lg:mt-0 lg:col-[4/11]">
-            <ul className="list-none flex flex-wrap -my-1 -mx-3 lg:justify-end">
-              {legalLinks.map((link, i) => (
-                <li key={i} className="my-1 mx-3 shrink-0">
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted-foreground underline-offset-4 hover:underline"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            </div>
           </div>
-          <div className="mt-6 text-sm leading-6 text-muted-foreground whitespace-nowrap lg:mt-0 lg:row-[1/3] lg:col-[1/4]">
-            <div>© {new Date().getFullYear()} Nexgen. All rights reserved.</div>
-          </div>
+
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}
