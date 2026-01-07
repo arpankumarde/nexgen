@@ -1,86 +1,5 @@
-// import Link from "next/link";
-// import Image from "next/image";
-// import { ArrowRight, Menu } from "lucide-react";
-// import {
-//   Sheet,
-//   SheetContent,
-//   SheetTitle,
-//   SheetTrigger,
-// } from "@/components/ui/sheet";
-// import { Button } from "@/components/ui/button";
-
-// const navigationItems = [
-//   { title: "ABOUT US", href: "/about" },
-//   { title: "TEAM", href: "/team" },
-//   { title: "CONTACT", href: "/contact" },
-// ];
-
-// const Header = () => {
-//   return (
-//     <header className="flex h-16 items-center justify-between mx-4">
-//       <Link href="/" className="flex items-center gap-2">
-//         <div className="flex items-center space-x-2">
-//           <Image src="/brand/logo.png" alt="Logo" width={150} height={50} />
-//         </div>
-//       </Link>
-
-//       <div className="flex items-center space-x-4">
-//         <nav className="hidden md:flex items-center space-x-8">
-//           {navigationItems.map((item) => (
-//             <Link
-//               key={item.title}
-//               href={item.href}
-//               className="text-sm text-foreground transition-colors"
-//             >
-//               {item.title}
-//             </Link>
-//           ))}
-//         </nav>
-
-//         <div className="flex items-center">
-//           <Button asChild className="hidden md:inline-flex">
-//             <Link href="/events">
-//               EVENTS <ArrowRight className="ml-1 w-4 h-4" />
-//             </Link>
-//           </Button>
-//           <Sheet>
-//             <SheetTrigger asChild>
-//               <Button variant="ghost" size="icon" className="md:hidden">
-//                 <Menu className="h-5 w-5" />
-//                 <span className="sr-only">Toggle menu</span>
-//               </Button>
-//             </SheetTrigger>
-//             <SheetContent className="p-4 bg-background">
-//               <SheetTitle>MENU</SheetTitle>
-//               <nav className="flex flex-col gap-6 mt-6">
-//                 {navigationItems.map((item) => (
-//                   <Link
-//                     key={item.title}
-//                     href={item.href}
-//                     className="text-sm text-foreground transition-colors"
-//                   >
-//                     {item.title}
-//                   </Link>
-//                 ))}
-//                 <Button asChild>
-//                   <Link href="/events">
-//                     EVENTS <ArrowRight className="ml-1 w-4 h-4" />
-//                   </Link>
-//                 </Button>
-//               </nav>
-//             </SheetContent>
-//           </Sheet>
-//         </div>
-//       </div>
-//     </header>
-//   );
-// };
-
-// export default Header;
-
 "use client";
 
-import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Menu } from "lucide-react";
@@ -100,7 +19,6 @@ const navigationItems = [
 ];
 
 export default function Header() {
-  /* cursor glow */
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -127,14 +45,12 @@ export default function Header() {
         overflow-hidden
       "
     >
-      {/* cursor glow */}
       <motion.div
         className="pointer-events-none absolute inset-0 z-0"
         style={{ background: glow }}
       />
 
       <div className="relative z-10 flex h-16 items-center justify-between px-6">
-        {/* LOGO */}
         <Link href="/" className="flex items-center gap-3">
           <div className="relative">
             <Image
@@ -144,14 +60,7 @@ export default function Header() {
               height={40}
               className="relative z-10"
             />
-            {/* logo glow */}
-            <div
-              className="
-                absolute inset-0 rounded-lg blur-xl
-                bg-gradient-to-r
-                from-emerald-400/30 via-emerald-500/30 to-teal-400/30
-              "
-            />
+            <div className="absolute inset-0 rounded-lg blur-xl bg-gradient-to-r from-emerald-400/30 via-emerald-500/30 to-teal-400/30" />
           </div>
         </Link>
 
@@ -178,9 +87,7 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* ACTIONS */}
         <div className="flex items-center gap-3">
-          {/* CTA */}
           <Button
             asChild
             className="
@@ -216,15 +123,9 @@ export default function Header() {
 
             <SheetContent
               side="right"
-              className="
-                bg-black
-                border-l border-white/10
-                text-white
-              "
+              className="bg-black/70 backdrop-blur-sm border-l border-white/10 text-white p-4"
             >
-              <SheetTitle className="font-mono text-lg">
-                MENU
-              </SheetTitle>
+              <SheetTitle className="text-lg">MENU</SheetTitle>
 
               <nav className="mt-10 flex flex-col gap-6">
                 {navigationItems.map((item) => (
@@ -232,7 +133,7 @@ export default function Header() {
                     key={item.title}
                     href={item.href}
                     className="
-                      text-sm font-mono tracking-wide
+                      text-sm tracking-wide
                       text-slate-300
                       hover:text-emerald-400
                       transition-colors
@@ -244,10 +145,7 @@ export default function Header() {
 
                 <Button
                   asChild
-                  className="
-                    mt-6 font-mono
-                   bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600
-                  "
+                  className="mt-6 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600"
                 >
                   <Link href="/events">
                     EVENTS <ArrowRight className="ml-2 h-4 w-4" />
@@ -261,4 +159,3 @@ export default function Header() {
     </header>
   );
 }
-

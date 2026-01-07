@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { Github, Twitter, Linkedin, Instagram } from "lucide-react";
@@ -12,16 +10,31 @@ const mainLinks = [
 ];
 
 const socialLinks = [
-  { icon: <Linkedin className="h-4 w-4" />, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: <Github className="h-4 w-4" />, href: "https://github.com", label: "GitHub" },
-  { icon: <Twitter className="h-4 w-4" />, href: "https://twitter.com", label: "Twitter" },
-  { icon: <Instagram className="h-4 w-4" />, href: "https://instagram.com", label: "Instagram" },
+  {
+    icon: <Linkedin className="h-4 w-4" />,
+    href: "https://linkedin.com",
+    label: "LinkedIn",
+  },
+  {
+    icon: <Github className="h-4 w-4" />,
+    href: "https://github.com",
+    label: "GitHub",
+  },
+  {
+    icon: <Twitter className="h-4 w-4" />,
+    href: "https://twitter.com",
+    label: "Twitter",
+  },
+  {
+    icon: <Instagram className="h-4 w-4" />,
+    href: "https://instagram.com",
+    label: "Instagram",
+  },
 ];
 
-export default function Footer() {
+const Footer = () => {
   return (
-    <footer className="relative border-t border-white/5 bg-[#1E1E1E] overflow-hidden">
-      {/* subtle background glow */}
+    <footer className="relative border-t border-white/30 overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-40">
         <div className="absolute bottom-0 left-1/4 h-32 w-64 bg-emerald-500/10 blur-[80px] rounded-full" />
         <div className="absolute top-0 right-1/4 h-32 w-64 bg-teal-500/10 blur-[80px] rounded-full" />
@@ -29,10 +42,11 @@ export default function Footer() {
 
       <div className="mx-auto max-w-7xl px-4 py-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-10">
-
-          {/* Brand/Copyright - Left Section */}
           <div className="flex flex-col items-center md:items-start gap-2">
-            <Link href="/" className="group transition-transform duration-300 hover:scale-105">
+            <Link
+              href="/"
+              className="group transition-transform duration-300 hover:scale-105"
+            >
               <Image
                 src="/brand/logo.png"
                 alt="Nexgen Logo"
@@ -41,27 +55,24 @@ export default function Footer() {
                 className="opacity-90 group-hover:opacity-100 transition-opacity"
               />
             </Link>
-            <p className="font-mono text-[10px] text-slate-500 uppercase tracking-[0.2em]">
-              © {new Date().getFullYear()} NEXGEN COMMUNITY
+            <p className="font-mono text-sm text-slate-500 uppercase tracking-[0.2rem]">
+              ©{new Date().getFullYear()} NEXGEN COMMUNITY
             </p>
           </div>
 
-          {/* Combined Links & Socials - Right Section Stacked */}
           <div className="flex flex-col items-center md:items-end gap-6">
-            {/* Navigation Links - Top */}
             <nav className="flex flex-wrap items-center justify-center md:justify-end gap-x-8 gap-y-2">
               {mainLinks.map((link) => (
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="text-[11px] font-mono font-bold text-slate-400 hover:text-emerald-400 tracking-widest uppercase transition-all duration-300"
+                  className="text-sm font-mono font-bold text-slate-400 hover:text-emerald-400 tracking-widest uppercase transition-all duration-300"
                 >
                   {link.label}
                 </Link>
               ))}
             </nav>
 
-            {/* Social Icons - Bottom */}
             <div className="flex items-center gap-3">
               {socialLinks.map((social) => (
                 <Button
@@ -71,16 +82,21 @@ export default function Footer() {
                   size="icon"
                   className="h-9 w-9 rounded-lg bg-white/5 hover:bg-emerald-500/10 border border-white/5 hover:border-emerald-500/30 text-slate-400 hover:text-emerald-400 transition-all duration-300"
                 >
-                  <Link href={social.href} target="_blank" aria-label={social.label}>
+                  <Link
+                    href={social.href}
+                    target="_blank"
+                    aria-label={social.label}
+                  >
                     {social.icon}
                   </Link>
                 </Button>
               ))}
             </div>
           </div>
-
         </div>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

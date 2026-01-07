@@ -1,13 +1,15 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import Link from "next/link";
-import { motion, useInView, useMotionValue, useMotionTemplate } from "framer-motion";
+import {
+  motion,
+  useInView,
+  useMotionValue,
+  useMotionTemplate,
+} from "framer-motion";
 import { Card } from "@/components/ui/card";
 import {
-  Linkedin,
-  Mail,
-  Circle,
   Code2,
   Mic2,
   Trophy,
@@ -15,77 +17,12 @@ import {
   Users2,
   Presentation,
   GraduationCap,
-  Network
+  Network,
 } from "lucide-react";
-
-/* ================= NEURAL BACKGROUND ================= */
-
-const NODE_COUNT = 24;
-const SAFE_MARGIN = 6;
-
-function NeuralBackground({
-  mouseX,
-  mouseY,
-}: {
-  mouseX: number;
-  mouseY: number;
-}) {
-  const [nodes, setNodes] = useState<
-    { x: number; y: number }[]
-  >([]);
-
-  useEffect(() => {
-    const generated = Array.from({ length: NODE_COUNT }).map(() => ({
-      x: SAFE_MARGIN + Math.random() * (100 - SAFE_MARGIN * 2),
-      y: SAFE_MARGIN + Math.random() * (100 - SAFE_MARGIN * 2),
-    }));
-    setNodes(generated);
-  }, []);
-
-  // Don't render on server → prevents mismatch
-  if (nodes.length === 0) return null;
-
-  return (
-    <div className="absolute inset-0 z-0">
-      {nodes.map((node, i) => {
-        const dx = mouseX - node.x;
-        const dy = mouseY - node.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const active = dist < 16;
-
-        return (
-          <motion.div
-            key={i}
-            className="absolute"
-            style={{
-              left: `${node.x}%`,
-              top: `${node.y}%`,
-            }}
-            animate={{
-              scale: active ? 1.6 : 1,
-              opacity: active ? 0.9 : 0.45,
-            }}
-            transition={{ duration: 0.25 }}
-          >
-            <Circle
-              size={active ? 14 : 10}
-              strokeWidth={1.5}
-              className="
-                text-emerald-400
-                drop-shadow-[0_0_14px_rgba(52,211,153,0.45)]
-              "
-            />
-          </motion.div>
-        );
-      })}
-    </div>
-  );
-}
 
 const Page = () => {
   const heroRef = useRef(null);
   const gridRef = useRef(null);
-  const whoWeAreRef = useRef(null);
   const whatWeDoRef = useRef(null);
   const whoWeServeRef = useRef(null);
   const whatWeOfferRef = useRef(null);
@@ -93,7 +30,6 @@ const Page = () => {
 
   const heroInView = useInView(heroRef, { once: true, amount: 0.1 });
   const gridInView = useInView(gridRef, { once: true, amount: 0.1 });
-  const whoWeAreInView = useInView(whoWeAreRef, { once: true, amount: 0.1 });
   const whatWeDoInView = useInView(whatWeDoRef, { once: true, amount: 0.1 });
   const whoWeServeInView = useInView(whoWeServeRef, {
     once: true,
@@ -108,7 +44,6 @@ const Page = () => {
     amount: 0.1,
   });
 
-  /* ================= MOUSE TRACKING ================= */
   const mouseXpx = useMotionValue(0);
   const mouseYpx = useMotionValue(0);
   const mouseX = useRef(0);
@@ -124,7 +59,7 @@ const Page = () => {
 
   return (
     <div
-      className="relative min-h-screen overflow-hidden bg-[#1E1E1E]"
+      className="relative min-h-screen overflow-hidden"
       onMouseMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect();
         mouseX.current = ((e.clientX - rect.left) / rect.width) * 100;
@@ -133,18 +68,18 @@ const Page = () => {
         mouseYpx.set(e.clientY);
       }}
     >
-      {/* Cursor Glow */}
       <motion.div
         className="pointer-events-none absolute inset-0 z-0"
         style={{ background: glow }}
       />
 
       <div className="relative z-10 container mx-auto px-4">
-        {/* Hero Section */}
         <section className="container py-24" ref={heroRef}>
           <motion.div
             initial={{ opacity: 0, y: 50, filter: "blur(12px)" }}
-            animate={heroInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+            animate={
+              heroInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}
+            }
             transition={{ duration: 0.8 }}
             className="flex flex-col items-center text-center mb-16"
           >
@@ -152,17 +87,14 @@ const Page = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="
-              font-mono text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl 
+              className="text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl 
               max-w-4xl mx-auto leading-tight mb-4
               bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-300
-              bg-clip-text text-transparent
-            "
+              bg-clip-text text-transparent"
             >
               ABOUT US
             </motion.h1>
 
-            {/* UNDERLINE */}
             <motion.div
               initial={{ width: 0 }}
               animate={heroInView ? { width: "120px" } : {}}
@@ -183,17 +115,18 @@ const Page = () => {
             </motion.p>
           </motion.div>
 
-          {/* What is Nexgen Section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.6, duration: 0.6 }}
             className="max-w-4xl mx-auto mb-16"
           >
-            <div className="
+            <div
+              className="
               bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-8 md:p-12
               hover:shadow-[0_0_30px_rgba(52,211,153,0.1)] transition-all duration-300
-            ">
+            "
+            >
               <p className="text-slate-300 font-mono text-lg leading-relaxed text-center">
                 <span className="text-emerald-400 font-bold">Nexgen</span> is
                 the recognized Data Science Community of{" "}
@@ -201,23 +134,21 @@ const Page = () => {
                   Meghnad Saha Institute of Technology
                 </span>
                 . We are a student-driven platform created to cultivate and
-                encourage a deep-rooted interest in data-centric innovation across
-                the campus. Our community unites undergraduates, postgraduates,
-                researchers, and faculty who are passionate about data science,
-                machine learning, artificial intelligence, and analytical
-                thinking. Through workshops, expert talks, hackathons, and
-                collaborative projects, we foster a vibrant ecosystem where data
-                meets vision and innovation thrives.
+                encourage a deep-rooted interest in data-centric innovation
+                across the campus. Our community unites undergraduates,
+                postgraduates, researchers, and faculty who are passionate about
+                data science, machine learning, artificial intelligence, and
+                analytical thinking. Through workshops, expert talks,
+                hackathons, and collaborative projects, we foster a vibrant
+                ecosystem where data meets vision and innovation thrives.
               </p>
             </div>
           </motion.div>
 
-          {/* Bento Grid - Image Gallery */}
           <div
             ref={gridRef}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto mb-20"
           >
-            {/* Large Featured Card */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={gridInView ? { opacity: 1, scale: 1 } : {}}
@@ -314,8 +245,6 @@ const Page = () => {
             </motion.div>
           </div>
 
-
-
           {/* What We Do Section - Integrated as a Feature Grid */}
           <section ref={whatWeDoRef} className="max-w-7xl mx-auto mb-32">
             <motion.h2
@@ -333,26 +262,26 @@ const Page = () => {
                   title: "WORKSHOPS",
                   desc: "Hands-on sessions in Data Science, ML, and Analytics tools.",
                   icon: Code2,
-                  delay: 0.3
+                  delay: 0.3,
                 },
                 {
                   title: "EXPERT TALKS",
                   desc: "Insightful sessions with industry leaders and tech innovators.",
                   icon: Mic2,
-                  delay: 0.4
+                  delay: 0.4,
                 },
                 {
                   title: "HACKATHONS",
                   desc: "Competitive coding and real-world problem solving challenges.",
                   icon: Trophy,
-                  delay: 0.5
+                  delay: 0.5,
                 },
                 {
                   title: "PROJECTS",
                   desc: "Collaborative research and development in cutting-edge tech.",
                   icon: Cpu,
-                  delay: 0.6
-                }
+                  delay: 0.6,
+                },
               ].map((item, idx) => (
                 <motion.div
                   key={idx}
@@ -362,7 +291,9 @@ const Page = () => {
                 >
                   <Card className="h-full bg-white/5 border-white/10 backdrop-blur-md p-8 hover:border-emerald-500/50 hover:bg-white/10 transition-all duration-500 group">
                     <item.icon className="h-10 w-10 text-emerald-400 mb-6 group-hover:scale-110 transition-transform duration-500" />
-                    <h3 className="font-mono font-bold text-xl mb-2 text-white group-hover:text-emerald-400 transition-colors">{item.title}</h3>
+                    <h3 className="font-mono font-bold text-xl mb-2 text-white group-hover:text-emerald-400 transition-colors">
+                      {item.title}
+                    </h3>
                     <p className="text-slate-400 font-mono text-sm leading-relaxed">
                       {item.desc}
                     </p>
@@ -397,15 +328,38 @@ const Page = () => {
 
                 <div className="relative z-10 max-w-2xl">
                   <p className="text-slate-300 font-mono text-xl md:text-2xl leading-relaxed">
-                    Our community welcomes all members of <span className="text-emerald-400 font-bold italic">Meghnad Saha Institute of Technology</span>.
-                    From curious newcomers to seasoned researchers, we provide a
-                    <span className="text-white font-bold tracking-tight"> supportive space </span>
-                    for anyone eager to collaborate, grow, and shape the future of data.
+                    Our community welcomes all members of{" "}
+                    <Link
+                      href="https://msit.edu.in"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-emerald-400 font-bold italic"
+                    >
+                      Meghnad Saha Institute of Technology
+                    </Link>
+                    . From curious newcomers to seasoned researchers, we provide
+                    a{" "}
+                    <Link
+                      href="/team"
+                      className="text-white font-bold tracking-tight"
+                    >
+                      supportive space
+                    </Link>{" "}
+                    for anyone eager to collaborate, grow, and shape the future
+                    of data.
                   </p>
 
                   <div className="mt-12 flex flex-wrap gap-4">
-                    {["Undergraduates", "Researchers", "Faculty", "Innovators"].map((tag, idx) => (
-                      <span key={idx} className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-emerald-400 font-mono text-sm">
+                    {[
+                      "Undergraduates",
+                      "Researchers",
+                      "Faculty",
+                      "Innovators",
+                    ].map((tag, idx) => (
+                      <span
+                        key={idx}
+                        className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-emerald-400 font-mono text-sm"
+                      >
                         # {tag}
                       </span>
                     ))}
@@ -437,18 +391,18 @@ const Page = () => {
                   {
                     label: "Hands-on Practical Experience",
                     sub: "Real-world projects that build industry-standard portfolios.",
-                    icon: Presentation
+                    icon: Presentation,
                   },
                   {
                     label: "Professional Mentorship",
                     sub: "Guidance from accomplished alumni and industry experts.",
-                    icon: GraduationCap
+                    icon: GraduationCap,
                   },
                   {
                     label: "Exclusive Network",
                     sub: "Connections to a vibrant ecosystem of data practitioners.",
-                    icon: Network
-                  }
+                    icon: Network,
+                  },
                 ].map((offer, idx) => (
                   <div key={idx} className="flex gap-6 group">
                     <div className="flex-shrink-0 h-14 w-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-emerald-500/10 group-hover:border-emerald-500/50 transition-all duration-500">
@@ -476,7 +430,9 @@ const Page = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-transparent to-black/60" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center p-8 backdrop-blur-md bg-white/5 rounded-2xl border border-white/10 group-hover:border-emerald-500/30 transition-all duration-500">
-                    <p className="font-mono text-3xl font-bold text-white tracking-widest uppercase mb-4">Elevate Your Career</p>
+                    <p className="font-mono text-3xl font-bold text-white tracking-widest uppercase mb-4">
+                      Elevate Your Career
+                    </p>
                     <div className="h-1.5 w-24 bg-gradient-to-r from-emerald-400 to-teal-400 mx-auto rounded-full" />
                   </div>
                 </div>

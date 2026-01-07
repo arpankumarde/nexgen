@@ -1,7 +1,13 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import { motion, useInView, useMotionValue, useMotionTemplate } from "framer-motion";
+import { useRef, useState } from "react";
+import Link from "next/link";
+import {
+  motion,
+  useInView,
+  useMotionValue,
+  useMotionTemplate,
+} from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -16,7 +22,6 @@ import {
   Send,
   MapPin,
   Phone,
-  Circle,
   ArrowRight,
 } from "lucide-react";
 
@@ -38,7 +43,6 @@ const Page = () => {
     message: "",
   });
 
-  /* ================= MOUSE TRACKING ================= */
   const mouseXpx = useMotionValue(0);
   const mouseYpx = useMotionValue(0);
   const mouseX = useRef(0);
@@ -97,7 +101,7 @@ const Page = () => {
 
   return (
     <div
-      className="relative min-h-screen overflow-hidden bg-[#1E1E1E]"
+      className="relative min-h-screen overflow-hidden"
       onMouseMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect();
         mouseX.current = ((e.clientX - rect.left) / rect.width) * 100;
@@ -106,18 +110,18 @@ const Page = () => {
         mouseYpx.set(e.clientY);
       }}
     >
-      {/* Background Effects */}
       <motion.div
         className="pointer-events-none absolute inset-0 z-0"
         style={{ background: glow }}
       />
 
       <div className="relative z-10 container mx-auto px-4 md:px-12">
-        {/* Hero Section */}
         <section className="py-16 md:py-20" ref={heroRef}>
           <motion.div
             initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-            animate={heroInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+            animate={
+              heroInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}
+            }
             transition={{ duration: 0.8 }}
             className="flex flex-col items-center text-center mb-12"
           >
@@ -147,7 +151,6 @@ const Page = () => {
             </motion.p>
           </motion.div>
 
-          {/* Contact Information Cards - More Compact & Aligned */}
           <motion.div
             ref={infoRef}
             initial={{ opacity: 0, y: 30 }}
@@ -156,13 +159,35 @@ const Page = () => {
             className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16"
           >
             {[
-              { icon: Mail, label: "Email", value: "contact@nexgen.com", color: "text-emerald-400" },
-              { icon: Phone, label: "Phone", value: "+1 (555) 123-4567", color: "text-teal-400" },
-              { icon: MapPin, label: "Location", value: "MSIT Campus, Kolkata", color: "text-teal-400" },
+              {
+                icon: Mail,
+                label: "Email",
+                value: "contact@nexgen.com",
+                color: "text-emerald-400",
+              },
+              {
+                icon: Phone,
+                label: "Phone",
+                value: "+1 (555) 123-4567",
+                color: "text-teal-400",
+              },
+              {
+                icon: MapPin,
+                label: "Location",
+                value: "MSIT Campus, Kolkata",
+                color: "text-teal-400",
+              },
             ].map((item, idx) => (
-              <Card key={idx} className="bg-white/5 border-white/10 backdrop-blur-md p-4 group hover:border-emerald-500/50 transition-all duration-500 text-center">
-                <item.icon className={`h-6 w-6 mx-auto mb-3 ${item.color} group-hover:scale-110 transition-transform duration-500`} />
-                <h3 className="font-mono font-bold text-base mb-1 text-white">{item.label}</h3>
+              <Card
+                key={idx}
+                className="gap-2 bg-white/5 border-white/10 backdrop-blur-md p-4 group hover:border-emerald-500/50 transition-all duration-500 text-center"
+              >
+                <item.icon
+                  className={`size-8 mx-auto mb-3 ${item.color} group-hover:scale-110 transition-transform duration-500`}
+                />
+                <h3 className="font-mono font-bold text-base text-white">
+                  {item.label}
+                </h3>
                 <p className="text-slate-400 font-mono text-xs leading-relaxed uppercase tracking-tight">
                   {item.value}
                 </p>
@@ -170,9 +195,7 @@ const Page = () => {
             ))}
           </motion.div>
 
-          {/* Contact Form and Social/Quick Links Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-6xl mx-auto items-start">
-            {/* Contact Form - Spans more columns for dominance */}
             <motion.div
               ref={formRef}
               initial={{ opacity: 0, x: -30 }}
@@ -182,11 +205,21 @@ const Page = () => {
             >
               <Card className="bg-white/5 border-white/10 backdrop-blur-md p-6 md:p-8 relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <h2 className="font-mono text-xl md:text-2xl font-bold mb-6 text-white relative z-10">SEND A MESSAGE</h2>
-                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 relative z-10">
+                <h2 className="font-mono text-xl md:text-2xl font-bold mb-6 text-white relative z-10">
+                  SEND A MESSAGE
+                </h2>
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-4 md:space-y-6 relative z-10"
+                >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <Label htmlFor="name" className="font-mono text-slate-300 text-[10px] uppercase tracking-wider">Name</Label>
+                      <Label
+                        htmlFor="name"
+                        className="font-mono text-slate-300 text-[10px] uppercase tracking-wider"
+                      >
+                        Name
+                      </Label>
                       <Input
                         id="name"
                         name="name"
@@ -198,7 +231,12 @@ const Page = () => {
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <Label htmlFor="email" className="font-mono text-slate-300 text-[10px] uppercase tracking-wider">Email</Label>
+                      <Label
+                        htmlFor="email"
+                        className="font-mono text-slate-300 text-[10px] uppercase tracking-wider"
+                      >
+                        Email
+                      </Label>
                       <Input
                         id="email"
                         name="email"
@@ -212,7 +250,12 @@ const Page = () => {
                     </div>
                   </div>
                   <div className="space-y-1.5">
-                    <Label htmlFor="subject" className="font-mono text-slate-300 text-[10px] uppercase tracking-wider">Subject</Label>
+                    <Label
+                      htmlFor="subject"
+                      className="font-mono text-slate-300 text-[10px] uppercase tracking-wider"
+                    >
+                      Subject
+                    </Label>
                     <Input
                       id="subject"
                       name="subject"
@@ -224,7 +267,12 @@ const Page = () => {
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <Label htmlFor="message" className="font-mono text-slate-300 text-[10px] uppercase tracking-wider">Message</Label>
+                    <Label
+                      htmlFor="message"
+                      className="font-mono text-slate-300 text-[10px] uppercase tracking-wider"
+                    >
+                      Message
+                    </Label>
                     <Textarea
                       id="message"
                       name="message"
@@ -236,7 +284,10 @@ const Page = () => {
                       placeholder="Type your message here..."
                     />
                   </div>
-                  <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-mono font-bold py-5 text-sm tracking-widest transition-all rounded-lg uppercase">
+                  <Button
+                    type="submit"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-mono font-bold py-5 text-sm tracking-widest transition-all rounded-lg uppercase"
+                  >
                     <Send className="h-4 w-4 mr-2" />
                     Dispatch Message
                   </Button>
@@ -244,7 +295,6 @@ const Page = () => {
               </Card>
             </motion.div>
 
-            {/* Social & Quick Links - More compact sidebar */}
             <motion.div
               ref={socialRef}
               initial={{ opacity: 0, x: 30 }}
@@ -252,11 +302,12 @@ const Page = () => {
               transition={{ duration: 0.8 }}
               className="lg:col-span-4 space-y-6"
             >
-              {/* Follow Us Card */}
               <Card className="bg-white/5 border-white/10 backdrop-blur-md p-6 group">
-                <h2 className="font-mono text-lg font-bold mb-4 text-white group-hover:text-emerald-400 transition-colors uppercase tracking-tight">FOLLOW US</h2>
+                <h2 className="font-mono text-lg font-bold mb-4 text-white group-hover:text-emerald-400 transition-colors uppercase tracking-tight">
+                  FOLLOW US
+                </h2>
                 <div className="grid grid-cols-2 gap-3">
-                  {socialLinks.map((social, index) => (
+                  {socialLinks.map((social) => (
                     <motion.a
                       key={social.name}
                       href={social.href}
@@ -267,29 +318,32 @@ const Page = () => {
                       className={`flex items-center gap-2 p-2.5 rounded-lg border border-white/10 bg-white/5 ${social.color} hover:bg-emerald-500/10 hover:border-emerald-500/50 transition-all group/icon`}
                     >
                       <social.icon className="h-4 w-4" />
-                      <span className="font-mono font-bold text-[10px] tracking-tight">{social.name}</span>
+                      <span className="font-mono font-bold text-[10px] tracking-tight">
+                        {social.name}
+                      </span>
                     </motion.a>
                   ))}
                 </div>
               </Card>
 
-              {/* Quick Links Card */}
               <Card className="bg-white/5 border-white/10 backdrop-blur-md p-5 group">
-                <h2 className="font-mono text-lg font-bold mb-4 text-white group-hover:text-teal-400 transition-colors uppercase tracking-tight">QUICK LINKS</h2>
+                <h2 className="font-mono text-lg font-bold mb-4 text-white group-hover:text-teal-400 transition-colors uppercase tracking-tight">
+                  QUICK LINKS
+                </h2>
                 <div className="space-y-0.5">
                   {[
                     { label: "About Us", href: "/about" },
                     { label: "Our Team", href: "/team" },
                     { label: "Events", href: "/events" },
                   ].map((link, idx) => (
-                    <a
+                    <Link
                       key={idx}
                       href={link.href}
                       className="flex items-center justify-between group/link font-mono text-slate-400 hover:text-white transition-all py-2.5 border-b border-white/5 last:border-0"
                     >
                       <span className="text-sm">{link.label}</span>
                       <ArrowRight className="h-4 w-4 opacity-0 -translate-x-2 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all text-emerald-400" />
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </Card>
