@@ -51,17 +51,25 @@ const Page = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="font-mono text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl max-w-4xl mx-auto leading-tight mb-4"
+            className="text-5xl font-bold sm:text-6xl md:text-7xl lg:text-8xl max-w-5xl mx-auto leading-tight mb-6 bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-300 bg-clip-text text-transparent"
           >
             EVENTS
           </motion.h1>
+
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: "150px" }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="h-1.5 rounded-full mb-10 bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-300"
+          />
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="mx-auto max-w-3xl text-2xl text-emerald-400 font-mono font-semibold"
+            className="mx-auto max-w-3xl text-2xl text-slate-300 font-semibold"
           >
-            Join Us for Workshops, Talks, and Hackathons
+            Join Us for Workshops, Talks, and Events
           </motion.p>
         </motion.div>
 
@@ -85,16 +93,16 @@ const Page = () => {
               className="h-full"
             >
               <Card className="h-full pt-0 bg-white/10 border-border hover:border-primary/50 transition-all duration-300 backdrop-blur-sm flex flex-col group overflow-hidden">
-                <div className="relative w-full h-48 overflow-hidden">
+                <div className="relative w-full h-72 overflow-hidden">
                   <Image
                     src={event.poster ?? ""}
                     alt={event.title}
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="object-cover object-top group-hover:scale-110 transition-transform duration-500"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src =
-                        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%2300d492' width='400' height='300'/%3E%3Ctext fill='%23fff' font-family='monospace' font-size='20' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EEvent Poster%3C/text%3E%3C/svg%3E";
+                        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%231e1e1e' width='400' height='300'/%3E%3Ctext fill='%23fff' font-family='monospace' font-size='20' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EPoster Unavailable%3C/text%3E%3C/svg%3E";
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
