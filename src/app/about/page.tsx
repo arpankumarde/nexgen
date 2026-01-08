@@ -69,7 +69,7 @@ const Page = () => {
       }}
     >
       <motion.div
-        className="pointer-events-none absolute inset-0 z-0"
+        className="pointer-events-none fixed inset-0 z-0"
         style={{ background: glow }}
       />
 
@@ -155,7 +155,7 @@ const Page = () => {
               transition={{ delay: 0.8, duration: 0.6 }}
               className="lg:col-span-2 lg:row-span-2 group"
             >
-              <Card className="h-full bg-white/5 border-white/10 backdrop-blur-md overflow-hidden hover:border-emerald-500/50 transition-all duration-300 cursor-pointer">
+              <Card className="h-full bg-white/5 border-white/10 backdrop-blur-md overflow-hidden hover:border-emerald-500/50 transition-all duration-300 cursor-pointer p-0">
                 <div className="relative h-full min-h-[400px] bg-[url('/about/image1.jpg')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500">
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1E1E1E]/90 via-[#1E1E1E]/30 to-transparent" />
                   <div className="absolute inset-0 flex items-end p-8">
@@ -179,7 +179,7 @@ const Page = () => {
               transition={{ delay: 0.9, duration: 0.6 }}
               className="lg:col-span-2 group"
             >
-              <Card className="h-full bg-white/5 border-white/10 backdrop-blur-md overflow-hidden hover:border-emerald-500/50 transition-all duration-300 cursor-pointer">
+              <Card className="h-full bg-white/5 border-white/10 backdrop-blur-md overflow-hidden hover:border-emerald-500/50 transition-all duration-300 cursor-pointer p-0">
                 <div className="relative h-full min-h-[200px] bg-[url('/about/image2.jpg')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500">
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1E1E1E]/90 via-[#1E1E1E]/30 to-transparent" />
                   <div className="absolute inset-0 flex items-end p-6">
@@ -203,7 +203,7 @@ const Page = () => {
               transition={{ delay: 1.0, duration: 0.6 }}
               className="group"
             >
-              <Card className="h-full bg-white/5 border-white/10 backdrop-blur-md overflow-hidden hover:border-emerald-500/50 transition-all duration-300 cursor-pointer">
+              <Card className="h-full bg-white/5 border-white/10 backdrop-blur-md overflow-hidden hover:border-emerald-500/50 transition-all duration-300 cursor-pointer p-0">
                 <div className="relative h-full min-h-[200px] bg-[url('/about/image3.jpg')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500">
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1E1E1E]/90 via-[#1E1E1E]/30 to-transparent" />
                   <div className="absolute inset-0 flex items-end p-6">
@@ -227,7 +227,7 @@ const Page = () => {
               transition={{ delay: 1.1, duration: 0.6 }}
               className="group"
             >
-              <Card className="h-full bg-white/5 border-white/10 backdrop-blur-md overflow-hidden hover:border-emerald-500/50 transition-all duration-300 cursor-pointer">
+              <Card className="h-full bg-white/5 border-white/10 backdrop-blur-md overflow-hidden hover:border-emerald-500/50 transition-all duration-300 cursor-pointer p-0">
                 <div className="relative h-full min-h-[200px] bg-[url('/about/image4.jpg')] bg-cover bg-center group-hover:scale-105 transition-transform duration-500">
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1E1E1E]/90 via-[#1E1E1E]/30 to-transparent" />
                   <div className="absolute inset-0 flex items-end p-6">

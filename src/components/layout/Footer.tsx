@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Github, Twitter, Linkedin, Instagram } from "lucide-react";
+import { FaWhatsapp, FaInstagram, FaLinkedinIn, FaGithub, FaTwitter } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
+import socials from "@/data/socials";
 
 const mainLinks = [
   { href: "/about", label: "About" },
@@ -11,23 +12,28 @@ const mainLinks = [
 
 const socialLinks = [
   {
-    icon: <Linkedin className="h-4 w-4" />,
-    href: "https://linkedin.com",
+    icon: <FaLinkedinIn className="h-4 w-4" />,
+    href: socials.linkedin,
     label: "LinkedIn",
   },
   {
-    icon: <Github className="h-4 w-4" />,
-    href: "https://github.com",
+    icon: <FaGithub className="h-4 w-4" />,
+    href: socials.github,
     label: "GitHub",
   },
   {
-    icon: <Twitter className="h-4 w-4" />,
-    href: "https://twitter.com",
+    icon: <FaTwitter className="h-4 w-4" />,
+    href: socials.twitter,
     label: "Twitter",
   },
   {
-    icon: <Instagram className="h-4 w-4" />,
-    href: "https://instagram.com",
+    icon: <FaInstagram className="h-4 w-4" />,
+    href: socials.instagram,
+    label: "Instagram",
+  },
+  {
+    icon: <FaWhatsapp className="h-4 w-4" />,
+    href: socials.whatsapp,
     label: "Instagram",
   },
 ];

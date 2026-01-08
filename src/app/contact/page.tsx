@@ -14,16 +14,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import {
-  Linkedin,
   Mail,
-  Github,
-  Twitter,
-  Instagram,
   Send,
   MapPin,
   Phone,
   ArrowRight,
 } from "lucide-react";
+import { FaInstagram, FaLinkedinIn, FaGithub, FaTwitter } from "react-icons/fa";
+import socials from "@/data/socials";
 
 const Page = () => {
   const heroRef = useRef(null);
@@ -75,26 +73,26 @@ const Page = () => {
   const socialLinks = [
     {
       name: "LinkedIn",
-      icon: Linkedin,
-      href: "https://linkedin.com/company/nexgen",
+      icon: FaLinkedinIn,
+      href: socials.linkedin,
       color: "hover:text-emerald-400",
     },
     {
       name: "GitHub",
-      icon: Github,
-      href: "https://github.com/nexgen",
+      icon: FaGithub,
+      href: socials.github,
       color: "hover:text-emerald-400",
     },
     {
       name: "Twitter",
-      icon: Twitter,
-      href: "https://twitter.com/nexgen",
+      icon: FaTwitter,
+      href: socials.twitter,
       color: "hover:text-emerald-400",
     },
     {
       name: "Instagram",
-      icon: Instagram,
-      href: "https://instagram.com/nexgen",
+      icon: FaInstagram,
+      href: socials.instagram,
       color: "hover:text-emerald-400",
     },
   ];
@@ -111,7 +109,7 @@ const Page = () => {
       }}
     >
       <motion.div
-        className="pointer-events-none absolute inset-0 z-0"
+        className="pointer-events-none fixed inset-0 z-0"
         style={{ background: glow }}
       />
 
@@ -162,19 +160,19 @@ const Page = () => {
               {
                 icon: Mail,
                 label: "Email",
-                value: "contact@nexgen.com",
+                value: socials.email,
                 color: "text-emerald-400",
               },
               {
                 icon: Phone,
                 label: "Phone",
-                value: "+1 (555) 123-4567",
+                value: socials.phone,
                 color: "text-teal-400",
               },
               {
                 icon: MapPin,
                 label: "Location",
-                value: "MSIT Campus, Kolkata",
+                value: socials.address,
                 color: "text-teal-400",
               },
             ].map((item, idx) => (

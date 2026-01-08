@@ -80,81 +80,81 @@ const TeamMemberCard = ({
           <div className="flex justify-center gap-4">
             {member.socials.find((social) => social.platform === "github")
               ?.url && (
-              <Link
-                href={
-                  member.socials.find((social) => social.platform === "github")
-                    ?.url ?? ""
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-white/5 text-slate-400 hover:text-white hover:bg-emerald-500/20 transition-all duration-300"
-                aria-label={`${member.name}'s GitHub`}
-              >
-                <Github className="h-5 w-5" />
-              </Link>
-            )}
+                <Link
+                  href={
+                    member.socials.find((social) => social.platform === "github")
+                      ?.url ?? ""
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full bg-white/5 text-slate-400 hover:text-white hover:bg-emerald-500/20 transition-all duration-300"
+                  aria-label={`${member.name}'s GitHub`}
+                >
+                  <Github className="h-5 w-5" />
+                </Link>
+              )}
             {member.socials.find((social) => social.platform === "linkedin")
               ?.url && (
-              <Link
-                href={
-                  member.socials.find(
-                    (social) => social.platform === "linkedin"
-                  )?.url ?? ""
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-white/5 text-slate-400 hover:text-white hover:bg-emerald-500/20 transition-all duration-300"
-                aria-label={`${member.name}'s LinkedIn`}
-              >
-                <Linkedin className="h-5 w-5" />
-              </Link>
-            )}
+                <Link
+                  href={
+                    member.socials.find(
+                      (social) => social.platform === "linkedin"
+                    )?.url ?? ""
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full bg-white/5 text-slate-400 hover:text-white hover:bg-emerald-500/20 transition-all duration-300"
+                  aria-label={`${member.name}'s LinkedIn`}
+                >
+                  <Linkedin className="h-5 w-5" />
+                </Link>
+              )}
             {member.socials.find((social) => social.platform === "twitter")
               ?.url && (
-              <Link
-                href={
-                  member.socials.find((social) => social.platform === "twitter")
-                    ?.url ?? ""
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-white/5 text-slate-400 hover:text-white hover:bg-emerald-500/20 transition-all duration-300"
-                aria-label={`${member.name}'s Twitter`}
-              >
-                <Twitter className="h-5 w-5" />
-              </Link>
-            )}
+                <Link
+                  href={
+                    member.socials.find((social) => social.platform === "twitter")
+                      ?.url ?? ""
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full bg-white/5 text-slate-400 hover:text-white hover:bg-emerald-500/20 transition-all duration-300"
+                  aria-label={`${member.name}'s Twitter`}
+                >
+                  <Twitter className="h-5 w-5" />
+                </Link>
+              )}
             {member.socials.find((social) => social.platform === "instagram")
               ?.url && (
-              <Link
-                href={
-                  member.socials.find(
-                    (social) => social.platform === "instagram"
-                  )?.url ?? ""
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-white/5 text-slate-400 hover:text-white hover:bg-emerald-500/20 transition-all duration-300"
-                aria-label={`${member.name}'s Instagram`}
-              >
-                <Instagram className="h-5 w-5" />
-              </Link>
-            )}
+                <Link
+                  href={
+                    member.socials.find(
+                      (social) => social.platform === "instagram"
+                    )?.url ?? ""
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full bg-white/5 text-slate-400 hover:text-white hover:bg-emerald-500/20 transition-all duration-300"
+                  aria-label={`${member.name}'s Instagram`}
+                >
+                  <Instagram className="h-5 w-5" />
+                </Link>
+              )}
             {member.socials.find((social) => social.platform === "website")
               ?.url && (
-              <Link
-                href={
-                  member.socials.find((social) => social.platform === "website")
-                    ?.url ?? ""
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-white/5 text-slate-400 hover:text-white hover:bg-emerald-500/20 transition-all duration-300"
-                aria-label={`${member.name}'s Website`}
-              >
-                <Globe className="h-5 w-5" />
-              </Link>
-            )}
+                <Link
+                  href={
+                    member.socials.find((social) => social.platform === "website")
+                      ?.url ?? ""
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full bg-white/5 text-slate-400 hover:text-white hover:bg-emerald-500/20 transition-all duration-300"
+                  aria-label={`${member.name}'s Website`}
+                >
+                  <Globe className="h-5 w-5" />
+                </Link>
+              )}
           </div>
         </CardContent>
       </Card>
@@ -238,7 +238,7 @@ const Page = () => {
       }}
     >
       <motion.div
-        className="pointer-events-none absolute inset-0 z-0"
+        className="pointer-events-none fixed inset-0 z-0"
         style={{ background: glow }}
       />
 
