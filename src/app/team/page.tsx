@@ -41,7 +41,7 @@ const TeamMemberCard = ({
         delay: delay + index * 0.1,
         duration: 0.6,
       }}
-      className="group"
+      className="group w-full md:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] max-w-sm"
     >
       <Card className="h-full bg-white/5 border-white/10 backdrop-blur-md hover:border-emerald-500/50 transition-all duration-500 overflow-hidden relative">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -173,7 +173,7 @@ const TeamSection = ({
 
       <div
         ref={ref}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto"
+        className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto"
       >
         {members.map((member, index) => (
           <TeamMemberCard
