@@ -11,7 +11,6 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Linkedin, Github, Twitter, Instagram } from "lucide-react";
-import NeuralBackground from "@/components/shared/NeuralBackground";
 import { Member } from "@/types/Member";
 import members from "@/data/members";
 
@@ -105,35 +104,35 @@ const TeamMemberCard = ({
             </Link>
             {member.socials.find((social) => social.platform === "twitter")
               ?.url && (
-              <Link
-                href={
-                  member.socials.find((social) => social.platform === "twitter")
-                    ?.url ?? ""
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-white/5 text-slate-400 hover:text-white hover:bg-emerald-500/20 transition-all duration-300"
-                aria-label={`${member.name}'s Twitter`}
-              >
-                <Twitter className="h-5 w-5" />
-              </Link>
-            )}
+                <Link
+                  href={
+                    member.socials.find((social) => social.platform === "twitter")
+                      ?.url ?? ""
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full bg-white/5 text-slate-400 hover:text-white hover:bg-emerald-500/20 transition-all duration-300"
+                  aria-label={`${member.name}'s Twitter`}
+                >
+                  <Twitter className="h-5 w-5" />
+                </Link>
+              )}
             {member.socials.find((social) => social.platform === "instagram")
               ?.url && (
-              <Link
-                href={
-                  member.socials.find(
-                    (social) => social.platform === "instagram"
-                  )?.url ?? ""
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full bg-white/5 text-slate-400 hover:text-white hover:bg-emerald-500/20 transition-all duration-300"
-                aria-label={`${member.name}'s Instagram`}
-              >
-                <Instagram className="h-5 w-5" />
-              </Link>
-            )}
+                <Link
+                  href={
+                    member.socials.find(
+                      (social) => social.platform === "instagram"
+                    )?.url ?? ""
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full bg-white/5 text-slate-400 hover:text-white hover:bg-emerald-500/20 transition-all duration-300"
+                  aria-label={`${member.name}'s Instagram`}
+                >
+                  <Instagram className="h-5 w-5" />
+                </Link>
+              )}
           </div>
         </CardContent>
       </Card>
@@ -220,7 +219,6 @@ const Page = () => {
         className="pointer-events-none absolute inset-0 z-0"
         style={{ background: glow }}
       />
-      <NeuralBackground mouseX={mouseX.current} mouseY={mouseY.current} />
 
       <div className="relative z-10 container mx-auto px-4">
         <section className="container py-24">
