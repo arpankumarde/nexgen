@@ -34,7 +34,7 @@ const socialLinks = [
   {
     icon: <FaWhatsapp className="h-4 w-4" />,
     href: socials.whatsapp,
-    label: "Instagram",
+    label: "WhatsApp",
   },
 ];
 

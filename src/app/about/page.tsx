@@ -18,7 +18,10 @@ import {
   Presentation,
   GraduationCap,
   Network,
+  ExternalLink,
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
+import socials from "@/data/socials";
 
 const Page = () => {
   const heroRef = useRef(null);
@@ -429,11 +432,31 @@ const Page = () => {
                 <div className="absolute inset-0 bg-[url('/about/offer-bg.jpg')] bg-cover bg-center group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-transparent to-black/60" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center p-8 backdrop-blur-md bg-white/5 rounded-2xl border border-white/10 group-hover:border-emerald-500/30 transition-all duration-500">
-                    <p className="font-mono text-3xl font-bold text-white tracking-widest uppercase mb-4">
-                      Elevate Your Career
-                    </p>
-                    <div className="h-1.5 w-24 bg-gradient-to-r from-emerald-400 to-teal-400 mx-auto rounded-full" />
+                  <div className="text-center p-10 backdrop-blur-md bg-white/5 rounded-2xl border border-white/10 group-hover:border-emerald-500/30 transition-all duration-500">
+                    <h3 className="font-mono text-3xl font-bold text-white tracking-tight uppercase mb-4 leading-tight">
+                      Join the <span className="text-emerald-400">Community</span>
+                      <span className="block text-xl text-slate-300 mt-2 normal-case font-medium">& be part of the team</span>
+                    </h3>
+                    <div className="h-1 w-16 bg-gradient-to-r from-emerald-400 to-teal-400 mx-auto rounded-full group-hover:w-32 transition-all duration-500 mb-8" />
+
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center relative z-20">
+                      <Link
+                        href={socials.whatsapp}
+                        target="_blank"
+                        className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#22c35e] text-white font-mono font-bold flex items-center justify-center gap-2 transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(37,211,102,0.3)]"
+                      >
+                        <FaWhatsapp className="size-5" />
+                        COMMUNITY
+                      </Link>
+                      <Link
+                        href={socials.formlink || "#"} // Using github as placeholder if teamForm is missing, but ideally socials.teamForm
+                        target="_blank"
+                        className="w-full sm:w-auto px-6 py-3 rounded-xl bg-white/10 hover:bg-white text-white hover:text-slate-900 border border-white/20 font-mono font-bold flex items-center justify-center gap-2 transition-all transform hover:scale-105 backdrop-blur-md shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                      >
+                        <ExternalLink className="size-5" />
+                        JOIN TEAM
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </motion.div>

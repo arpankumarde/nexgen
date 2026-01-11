@@ -25,13 +25,13 @@ const Newsletter = () => {
                             </p>
                         </div>
 
-                        <div className="flex flex-col gap-8 items-center lg:items-end">
+                        <div className="flex flex-col gap-8 items-center">
                             <Link
                                 href={socials.whatsapp}
                                 target="_blank"
                                 className="group relative w-full sm:w-auto"
                             >
-                                <div className="flex items-center gap-5 px-8 py-6 rounded-[1.5rem] bg-white/5 border border-white/10 backdrop-blur-md transition-all duration-500 hover:border-emerald-500/50 hover:bg-white/10 hover:shadow-[0_0_40px_rgba(52,211,153,0.1)] group-active:scale-95">
+                                <div className="flex items-center gap-5 px-8 py-6 rounded-[1.5rem] bg-white/5 border border-white/10 backdrop-blur-md transition-all duration-500 hover:border-white hover:bg-white hover:shadow-[0_0_40px_rgba(255,255,255,0.1)] group-active:scale-95">
                                     <div className="size-12 flex items-center justify-center rounded-xl bg-[#25D366]/10 border border-[#25D366]/20 group-hover:border-[#25D366]/50 transition-all duration-500">
                                         <svg
                                             viewBox="0 0 24 24"
@@ -42,18 +42,18 @@ const Newsletter = () => {
                                         </svg>
                                     </div>
                                     <div className="text-left">
-                                        <div className="text-xs font-mono text-emerald-400 uppercase tracking-widest mb-1 group-hover:translate-x-1 transition-transform duration-500">
+                                        <div className="text-xs font-mono text-emerald-400 group-hover:text-emerald-600 uppercase tracking-widest mb-1 group-hover:translate-x-1 transition-transform duration-500">
                                             Join Discussion
                                         </div>
-                                        <div className="text-2xl font-mono font-bold text-white group-hover:text-emerald-400 transition-colors duration-500">
+                                        <div className="text-2xl font-mono font-bold text-white group-hover:text-slate-900 transition-colors duration-500">
                                             WHATSAPP COMMUNITY
                                         </div>
                                     </div>
-                                    <ArrowRight className="size-6 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-2 transition-all duration-500 ml-4 hidden md:block" />
+                                    <ArrowRight className="size-6 text-slate-500 group-hover:text-slate-900 group-hover:translate-x-2 transition-all duration-500 ml-4 hidden md:block" />
                                 </div>
                             </Link>
 
-                            <div className="flex flex-wrap gap-4 opacity-70 justify-center lg:justify-end">
+                            <div className="flex flex-wrap gap-4 opacity-70 justify-center">
                                 {["#DataScience", "#ML", "#AI", "#Innovation"].map(tag => (
                                     <span key={tag} className="text-xs font-mono text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-full bg-emerald-500/5 hover:bg-emerald-500/10 transition-colors cursor-default">
                                         {tag}

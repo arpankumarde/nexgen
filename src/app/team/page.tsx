@@ -10,7 +10,8 @@ import {
 } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Linkedin, Github, Twitter, Instagram, Globe } from "lucide-react";
+import { Globe } from "lucide-react";
+import { FaInstagram, FaLinkedinIn, FaGithub, FaTwitter } from "react-icons/fa";
 import { Member } from "@/types/Member";
 import members from "@/data/members";
 
@@ -90,7 +91,7 @@ const TeamMemberCard = ({
                   className="p-2 rounded-full bg-white/5 text-slate-400 hover:text-white hover:bg-emerald-500/20 transition-all duration-300"
                   aria-label={`${member.name}'s GitHub`}
                 >
-                  <Github className="h-5 w-5" />
+                  <FaGithub className="h-5 w-5" />
                 </Link>
               )}
             {member.socials.find((social) => social.platform === "linkedin")
@@ -106,7 +107,7 @@ const TeamMemberCard = ({
                   className="p-2 rounded-full bg-white/5 text-slate-400 hover:text-white hover:bg-emerald-500/20 transition-all duration-300"
                   aria-label={`${member.name}'s LinkedIn`}
                 >
-                  <Linkedin className="h-5 w-5" />
+                  <FaLinkedinIn className="h-5 w-5" />
                 </Link>
               )}
             {member.socials.find((social) => social.platform === "twitter")
@@ -121,7 +122,7 @@ const TeamMemberCard = ({
                   className="p-2 rounded-full bg-white/5 text-slate-400 hover:text-white hover:bg-emerald-500/20 transition-all duration-300"
                   aria-label={`${member.name}'s Twitter`}
                 >
-                  <Twitter className="h-5 w-5" />
+                  <FaTwitter className="h-5 w-5" />
                 </Link>
               )}
             {member.socials.find((social) => social.platform === "instagram")
@@ -137,7 +138,7 @@ const TeamMemberCard = ({
                   className="p-2 rounded-full bg-white/5 text-slate-400 hover:text-white hover:bg-emerald-500/20 transition-all duration-300"
                   aria-label={`${member.name}'s Instagram`}
                 >
-                  <Instagram className="h-5 w-5" />
+                  <FaInstagram className="h-5 w-5" />
                 </Link>
               )}
             {member.socials.find((social) => social.platform === "website")
