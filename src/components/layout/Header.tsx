@@ -73,11 +73,11 @@ export default function Header() {
               className="
                 relative text-sm font-mono tracking-wide text-slate-200
                 transition-colors duration-300
-                hover:text-emerald-400
+                hover:text-emerald-300
                 after:absolute after:-bottom-1 after:left-0
                 after:h-[2px] after:w-0
                 after:bg-gradient-to-r
-                after:from-emerald-400 after:via-emerald-500 after:to-teal-400
+                after:from-emerald-400 after:via-teal-400 after:to-amber-300
                 after:transition-all after:duration-300
                 hover:after:w-full
               "
