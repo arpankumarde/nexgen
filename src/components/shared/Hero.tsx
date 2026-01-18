@@ -8,11 +8,15 @@ import {
   BarChart,
   Plug,
   Sparkles,
+  User,
   Zap,
 } from "lucide-react";
 import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import NeuralBackground from "./NeuralBackground";
+import socials from "@/data/socials";
+import events from "@/data/events";
+import { Calendar, Users, Clock, MapPin } from "lucide-react";
 
 const labels = [
   { icon: Sparkles, label: "Predictive Analytics" },
@@ -151,17 +155,190 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.6 }}
+          className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-6"
         >
           <Button
             asChild
             size="lg"
-            className="mt-14 font-mono bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600"
+            className="
+              w-full sm:w-auto h-14 px-8 
+              font-mono font-bold tracking-tight
+              bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600
+              shadow-xl shadow-emerald-500/20
+              hover:shadow-emerald-500/40
+              hover:scale-105 active:scale-95
+              transition-all duration-300
+            "
+          >
+            <Link href={socials.whatsapp} target="_blank">
+              JOIN COMMUNITY <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+
+          <Button
+            asChild
+            variant="outline"
+            size="lg"
+            className="
+              w-full sm:w-auto h-14 px-8
+              font-mono font-bold tracking-tight
+              text-emerald-400 border-emerald-500/30
+              bg-emerald-950/20 backdrop-blur-md
+              hover:bg-emerald-500/10 hover:border-emerald-500/50
+              transition-all duration-300
+            "
           >
             <Link href="/events">
               VIEW EVENTS <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
         </motion.div>
+
+        {/* CONDITIONAL UPCOMING EVENT SPOTLIGHT */}
+        {(() => {
+          const today = new Date().toISOString().split("T")[0];
+          const upcomingEvents = events
+            .filter((e) => e.startDate >= today)
+            .sort((a, b) => a.startDate.localeCompare(b.startDate))
+            .slice(0, 3);
+
+          if (upcomingEvents.length === 0) return null;
+
+          const isMulti = upcomingEvents.length > 1;
+
+          return (
+            <div
+              className={`mt-20 grid gap-8 mx-auto ${
+                upcomingEvents.length === 1
+                  ? "max-w-5xl"
+                  : upcomingEvents.length === 2
+                    ? "grid-cols-1 md:grid-cols-2 max-w-6xl"
+                    : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl"
+              }`}
+            >
+              {upcomingEvents.map((upcomingEvent, index) => (
+                <motion.div
+                  key={upcomingEvent.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 3 + index * 0.2, duration: 0.8 }}
+                  className="relative group h-full"
+                >
+                  <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-emerald-500/20 rounded-3xl blur-xl opacity-30 group-hover:opacity-70 transition duration-1000" />
+
+                  <div
+                    className={`relative h-full flex flex-col ${
+                      isMulti ? "p-8" : "md:flex-row items-center gap-10 p-10"
+                    } rounded-3xl border border-white/10 bg-black/40 backdrop-blur-2xl overflow-hidden text-left`}
+                  >
+                    <div className="flex-1 space-y-6">
+                      <div className="flex flex-col gap-4">
+                        <div className="inline-flex items-center w-fit gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-bold font-mono tracking-widest text-emerald-400 uppercase">
+                          {index === 0
+                            ? "Next Intelligence Session"
+                            : "Upcoming Session"}
+                        </div>
+
+                        <h3
+                          className={`${isMulti ? "text-2xl" : "text-3xl md:text-4xl"} font-bold text-white tracking-tight`}
+                        >
+                          {upcomingEvent.title}
+                        </h3>
+                      </div>
+
+                      <div
+                        className={`flex flex-wrap ${isMulti ? "gap-4" : "gap-8"} text-slate-300 text-sm font-mono`}
+                      >
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-4 w-4 text-emerald-400" />
+                          <span>
+                            {new Date(
+                              upcomingEvent.startDate,
+                            ).toLocaleDateString("en-US", {
+                              month: "short",
+                              day: "numeric",
+                              year: "numeric",
+                            })}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <MapPin className="h-4 w-4 text-emerald-400" />
+                          <span>MSIT</span>
+                        </div>
+                      </div>
+
+                      <p
+                        className={`text-slate-400 ${isMulti ? "text-sm" : "text-base"} leading-relaxed line-clamp-3`}
+                      >
+                        {upcomingEvent.description}
+                      </p>
+
+                      <div className="pt-2">
+                        <div className="flex items-start gap-4">
+                          {upcomingEvent.speakers.length === 1 ? (
+                            <User className="h-5 w-5 text-emerald-400 mt-1 flex-shrink-0" />
+                          ) : (
+                            <Users className="h-5 w-5 text-emerald-400 mt-1 flex-shrink-0" />
+                          )}
+                          <div className="flex-1 space-y-3">
+                            {upcomingEvent.speakers.map((speaker, idx) => (
+                              <div key={idx} className="flex flex-col">
+                                <p className="font-mono text-sm font-bold text-slate-200">
+                                  {speaker.name}
+                                </p>
+                                {speaker.designation && (
+                                  <p className="font-mono text-[10px] text-slate-400">
+                                    {speaker.designation}
+                                  </p>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      className={`flex flex-col gap-4 ${
+                        isMulti
+                          ? "mt-8 w-full"
+                          : "min-w-[220px] w-full md:w-auto self-end md:self-center"
+                      }`}
+                    >
+                      <Button
+                        asChild
+                        className="
+                          h-12 w-full
+                          bg-emerald-500 hover:bg-emerald-400 
+                          text-black font-bold font-mono tracking-widest
+                          shadow-[0_0_20px_rgba(16,185,129,0.3)]
+                          transition-all duration-300
+                        "
+                      >
+                        <Link href="/events">REGISTER NOW</Link>
+                      </Button>
+
+                      <Button
+                        asChild
+                        variant="outline"
+                        className="
+                          h-12 w-full
+                          font-mono font-bold tracking-tight
+                          text-emerald-400 border-emerald-500/30
+                          bg-emerald-500/5
+                          hover:bg-emerald-500/10 hover:border-emerald-500/50
+                          transition-all duration-300
+                        "
+                      >
+                        <Link href="/events">EXPLORE DETAILS</Link>
+                      </Button>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          );
+        })()}
       </section>
 
       <section className="container mx-auto px-4 pb-32 relative z-10">
