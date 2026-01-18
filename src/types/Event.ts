@@ -12,5 +12,9 @@ export interface Event {
   poster: string | null;
   startDate: string;
   endDate?: string;
+  resources?: {
+    register?: string;
+    material?: string;
+  };
   speakers: Speaker[];
 }

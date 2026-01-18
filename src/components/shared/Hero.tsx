@@ -161,8 +161,7 @@ const Hero = () => {
             asChild
             size="lg"
             className="
-              w-full sm:w-auto h-14 px-8 
-              font-mono font-bold tracking-tight
+              w-full sm:w-auto h-14
               bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600
               shadow-xl shadow-emerald-500/20
               hover:shadow-emerald-500/40
@@ -171,7 +170,7 @@ const Hero = () => {
             "
           >
             <Link href={socials.whatsapp} target="_blank">
-              JOIN COMMUNITY <ArrowRight className="ml-2 h-4 w-4" />
+              JOIN COMMUNITY <ArrowRight className="size-4" />
             </Link>
           </Button>
 
@@ -180,8 +179,7 @@ const Hero = () => {
             variant="outline"
             size="lg"
             className="
-              w-full sm:w-auto h-14 px-8
-              font-mono font-bold tracking-tight
+              w-full sm:w-auto h-14
               text-emerald-400 border-emerald-500/30
               bg-emerald-950/20 backdrop-blur-md
               hover:bg-emerald-500/10 hover:border-emerald-500/50
@@ -189,7 +187,7 @@ const Hero = () => {
             "
           >
             <Link href="/events">
-              VIEW EVENTS <ArrowRight className="ml-2 h-4 w-4" />
+              VIEW EVENTS <ArrowRight className="size-4" />
             </Link>
           </Button>
         </motion.div>
@@ -261,10 +259,6 @@ const Hero = () => {
                             })}
                           </span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <MapPin className="h-4 w-4 text-emerald-400" />
-                          <span>MSIT</span>
-                        </div>
                       </div>
 
                       <p
@@ -305,25 +299,32 @@ const Hero = () => {
                           : "min-w-[220px] w-full md:w-auto self-end md:self-center"
                       }`}
                     >
-                      <Button
-                        asChild
-                        className="
+                      {upcomingEvent.resources?.register && (
+                        <Button
+                          asChild
+                          size="lg"
+                          className="
                           h-12 w-full
                           bg-emerald-500 hover:bg-emerald-400 
-                          text-black font-bold font-mono tracking-widest
+                          text-black font-bold tracking-widest
                           shadow-[0_0_20px_rgba(16,185,129,0.3)]
                           transition-all duration-300
                         "
-                      >
-                        <Link href="/events">REGISTER NOW</Link>
-                      </Button>
-
+                        >
+                          <Link
+                            href={upcomingEvent.resources?.register}
+                            target="_blank"
+                          >
+                            REGISTER NOW
+                          </Link>
+                        </Button>
+                      )}
                       <Button
                         asChild
+                        size="lg"
                         variant="outline"
                         className="
                           h-12 w-full
-                          font-mono font-bold tracking-tight
                           text-emerald-400 border-emerald-500/30
                           bg-emerald-500/5
                           hover:bg-emerald-500/10 hover:border-emerald-500/50
