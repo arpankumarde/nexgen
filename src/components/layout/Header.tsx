@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
+import socials from "@/data/socials";
 
 const navigationItems = [
   { title: "ABOUT US", href: "/about" },
@@ -65,7 +66,7 @@ export default function Header() {
         </Link>
 
         {/* DESKTOP NAV */}
-        <nav className="hidden md:flex items-center gap-10 ml-auto mr-10">
+        <nav className="hidden md:flex items-center gap-10 ml-auto mr-6">
           {navigationItems.map((item) => (
             <Link
               key={item.title}
@@ -88,19 +89,23 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <Button variant="outline" className="hidden md:inline-flex" asChild>
+            <Link href="/events">EVENTS</Link>
+          </Button>
           <Button
             asChild
             className="
               hidden md:inline-flex
-              font-mono
+              font-mono font-bold tracking-tight
               bg-gradient-to-r
               from-emerald-600 via-emerald-500 to-teal-600
               shadow-lg shadow-emerald-500/20
-              hover:opacity-90 transition-all
-            "
+              hover:shadow-emerald-500/40
+              hover:scale-105 active:scale-95
+              transition-all duration-300"
           >
-            <Link href="/events">
-              EVENTS <ArrowRight className="ml-2 h-4 w-4" />
+            <Link href={socials.whatsapp} target="_blank">
+              JOIN COMMUNITY <ArrowRight className="size-4" />
             </Link>
           </Button>
 
@@ -116,25 +121,27 @@ export default function Header() {
                   hover:bg-white/10
                 "
               >
-                <Menu className="h-5 w-5" />
+                <Menu className="size-5" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
 
             <SheetContent
               side="right"
-              className="bg-black/70 backdrop-blur-sm border-l border-white/10 text-white p-4"
+              className="bg-black/70 backdrop-blur-sm border-l border-white/10 text-white p-6"
             >
-              <SheetTitle className="text-lg">MENU</SheetTitle>
+              <SheetTitle className="text-xl font-mono tracking-tighter">
+                MENU
+              </SheetTitle>
 
-              <nav className="mt-10 flex flex-col gap-6">
+              <nav className="mt-8 flex flex-col gap-6">
                 {navigationItems.map((item) => (
                   <Link
                     key={item.title}
                     href={item.href}
                     className="
-                      text-sm tracking-wide
-                      text-slate-300
+                      text-sm font-mono tracking-widest
+                      text-slate-400
                       hover:text-emerald-400
                       transition-colors
                     "
@@ -145,10 +152,23 @@ export default function Header() {
 
                 <Button
                   asChild
-                  className="mt-6 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600"
+                  size="lg"
+                  variant="outline"
+                  className="mt-4 font-mono font-bold"
                 >
                   <Link href="/events">
-                    EVENTS <ArrowRight className="ml-2 h-4 w-4" />
+                    EVENTS <ArrowRight className="size-4" />
+                  </Link>
+                </Button>
+
+                <Button
+                  asChild
+                  size="lg"
+                  className="mt-1 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600
+                    shadow-lg shadow-emerald-500/20"
+                >
+                  <Link href={socials.whatsapp} target="_blank">
+                    JOIN COMMUNITY <ArrowRight className="size-4" />
                   </Link>
                 </Button>
               </nav>
